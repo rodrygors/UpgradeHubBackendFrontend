@@ -16,17 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateInvoiceRequest {
-    private int number;
-    private float total;
     private Long userId;
     private List<Long> productIdList;
 
     @JsonIgnore
-    public Invoice createInvoice(User user, List<Product> products){
+    public Invoice createInvoice(float total, User user, List<Product> products){
         return Invoice
                 .builder()
-                .number(this.number)
-                .total(this.total)
+                .total(total)
                 .user(user)
                 .invoice_product(products)
                 .build();
