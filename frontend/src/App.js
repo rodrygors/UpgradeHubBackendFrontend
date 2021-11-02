@@ -1,7 +1,7 @@
 import Login from "./components/Login/Login";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import User from "./components/User/User";
-
+import { Redirect } from "react-router";
 import "./App.css";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
@@ -26,6 +26,7 @@ function App() {
         <Switch>
           {isLogged && (
             <>
+              <Redirect to="/user" />
               <Route path="/user">
                 <User user={user} />
               </Route>

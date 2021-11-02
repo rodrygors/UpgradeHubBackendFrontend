@@ -1,7 +1,5 @@
 import React from "react";
 
-import { useState } from "react";
-
 const InvoiceList = ({ invoices }) => {
   return (
     <div>
@@ -15,7 +13,7 @@ const InvoiceList = ({ invoices }) => {
               <h4>user: {invoice.username}</h4>
             </div>
           ))
-        : "Loading"}
+        : "Fetching Invoices"}
     </div>
   );
 };
