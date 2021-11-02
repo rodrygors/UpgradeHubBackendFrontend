@@ -8,7 +8,7 @@ const Invoice = () => {
       <div>
         <form>
           <label>
-            Invoice Numsdber
+            Invoice Numssdber
             <input type="number" />
           </label>
         </form>
