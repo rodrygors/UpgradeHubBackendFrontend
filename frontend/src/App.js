@@ -1,5 +1,7 @@
 import Login from "./components/Login/Login";
 
+import User from "./Components/User/User";
+
 import "./App.css";
 import { useState } from "react";
 
@@ -10,7 +12,10 @@ function App() {
   return (
     <div className="App">
       {isLogged ? (
-        <p>User is Logged. Hi {user.name}</p>
+        <div>
+          <p>User is Logged. Hi {user.name}</p>
+          <User />
+        </div>
       ) : (
         <Login setIsLogged={setIsLogged} setUser={setUser} />
       )}
