@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
+
+import com.example.demo.controller.response.ProductResponse;
 import com.example.demo.model.Product;
-import com.example.demo.model.response.ProductResponse;
 import com.example.demo.service.ProductService;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,10 +17,10 @@ public class ProductController {
         this.productService = productService;
     }
 
-    public List<ProductResponse> createProductResponseList(List<Product> products){
+    public List<ProductResponse> createProductResponseList(List<Product> products) {
         List<ProductResponse> productResponseList = new ArrayList<>();
 
-        if(!products.isEmpty()){
+        if (!products.isEmpty()) {
             for (Product product : products) {
                 productResponseList.add(product.createProductResponse());
             }

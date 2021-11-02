@@ -1,7 +1,6 @@
-package com.example.demo.model.request;
+package com.example.demo.controller.request;
 
 import com.example.demo.model.Invoice;
-import com.example.demo.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

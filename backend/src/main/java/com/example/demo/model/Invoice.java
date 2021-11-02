@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
-import com.example.demo.model.response.InvoiceResponse;
-import com.example.demo.model.response.ProductResponse;
+import com.example.demo.controller.response.InvoiceResponse;
+import com.example.demo.controller.response.ProductResponse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 

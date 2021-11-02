@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Invoice;
-import com.example.demo.model.response.InvoiceResponse;
+import com.example.demo.controller.response.InvoiceResponse;
 import com.example.demo.service.InvoiceService;
 import org.springframework.web.bind.annotation.RestController;
 
