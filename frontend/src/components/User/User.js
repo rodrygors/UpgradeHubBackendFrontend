@@ -7,8 +7,7 @@ import UserForm from "./UserForm";
 
 
 const User = () => {
-        
-        const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(false);
 
         return (
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
