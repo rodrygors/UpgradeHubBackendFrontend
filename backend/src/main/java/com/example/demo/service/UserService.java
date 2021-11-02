@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.request.UserRequest;
 import com.example.demo.controller.response.UserResponse;
 import com.example.demo.exception.UserNotFound;
 import com.example.demo.model.User;
@@ -38,5 +39,9 @@ public class UserService {
 
     private User findUserById(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFound::new);
+    }
+
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 }
