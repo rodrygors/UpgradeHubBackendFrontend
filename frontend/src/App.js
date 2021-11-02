@@ -30,7 +30,7 @@ function App() {
                 <User user={user} />
               </Route>
               <Route path="/invoice">
-                <Invoice />
+                <Invoice user={user} />
               </Route>
             </>
           )}
