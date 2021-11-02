@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.controller.request.UserRequest;
 import com.example.demo.model.User;
 import com.example.demo.controller.response.UserResponse;
 import com.example.demo.service.UserService;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,5 +26,26 @@ public class UserController {
             }
         }
         return userResponseList;
+    }
+    @GetMapping(value = "/users")
+    public List<UserResponse> getAllUsers(){
+        return createUserResponseList(userService.findAllUsers());
+    }
+    @PutMapping(value = "/user/{id}")
+    public User updateUser(@PathVariable(value = "id") Long id, @RequestBody UserRequest userRequest){
+        return userService.updateUser(
+                id,
+                userRequest.getName(),
+                userRequest.getPassword(),
+                userRequest.getAge());
+    }
+    @DeleteMapping(value = "/user/{id}")
+    public void deleteUser(@PathVariable(value = "id") Long id){
+        userService.deleteUser(id);
+    }
+
+    @PostMapping(value = "/users")
+    public UserResponse createUser(@RequestBody UserRequest userRequest){
+        return userService.addUser(userRequest.createUser()).createUserResponse();
     }
 }

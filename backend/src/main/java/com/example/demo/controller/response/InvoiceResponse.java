@@ -13,5 +13,6 @@ public class InvoiceResponse {
     private Long id;
     private int number;
     private float total;
+    private Long userId;
     private List<ProductResponse> productResponseList;
 }

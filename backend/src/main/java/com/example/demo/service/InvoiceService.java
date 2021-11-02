@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.request.CreateInvoiceRequest;
-import com.example.demo.controller.response.InvoiceResponse;
 import com.example.demo.exception.InvoiceNotFound;
 import com.example.demo.exception.ProductNotFound;
 import com.example.demo.exception.UserNotFound;
@@ -28,15 +26,15 @@ public class InvoiceService {
         this.productRepository = productRepository;
     }
 
-    private User findUserById(Long id){
+    private User findUserById(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFound::new);
     }
 
-    public Invoice findInvoiceById(Long id){
+    public Invoice findInvoiceById(Long id) {
         return invoiceRepository.findById(id).orElseThrow(InvoiceNotFound::new);
     }
 
-    public Product findProductById(Long id){
+    public Product findProductById(Long id) {
         return productRepository.findById(id).orElseThrow(ProductNotFound::new);
     }
 
@@ -44,13 +42,24 @@ public class InvoiceService {
         return this.findUserById(userId).getInvoices();
     }
 
-    public Invoice createInvoice(CreateInvoiceRequest createInvoiceRequest) {
+    public Invoice createInvoice(Long userId, List<Long> productIdList) {
         List<Product> products = new ArrayList<>();
-        for(Long productId : createInvoiceRequest.getProductIdList()){
-            products.add(this.findProductById(productId));
+        float total = 0f;
+        for (Long productId : productIdList) {
+            Product product = this.findProductById(productId);
+            products.add(product);
+            total += product.getValue();
         }
-        User user = this.findUserById(createInvoiceRequest.getUserId());
+        User user = this.findUserById(userId);
 
-        return invoiceRepository.save(createInvoiceRequest.createInvoice(user, products));
+        Invoice invoice = invoiceRepository.save(Invoice.builder()
+                .total(total)
+                .user(user)
+                .invoice_product(products)
+                .build());
+
+        user.getInvoices().add(invoice);
+        userRepository.save(user);
+        return invoice;
     }
 }

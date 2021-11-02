@@ -19,7 +19,10 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int number;
+
     private float total;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -44,6 +47,7 @@ public class Invoice {
                 this.id,
                 this.number,
                 this.total,
+                this.user.getId(),
                 productResponseList
         );
     }

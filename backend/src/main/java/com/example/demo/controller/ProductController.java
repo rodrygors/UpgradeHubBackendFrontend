@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.controller.request.ProductRequest;
 import com.example.demo.controller.response.ProductResponse;
 import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Getter;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +28,22 @@ public class ProductController {
             }
         }
         return productResponseList;
+
+    }
+
+    @PostMapping("/products")
+    public ProductResponse createProduct(@RequestBody ProductRequest productRequest){
+        return productService.addProduct(productRequest.createProduct()).createProductResponse();
+
+    }
+
+    @GetMapping("/products/{id}")
+    public ProductResponse getById(@PathVariable Long id){
+        return productService.findById(id).createProductResponse();
+    }
+
+    @GetMapping("/products")
+    public List<ProductResponse> getAllProducts(){
+        return createProductResponseList(productService.findAll());
     }
 }

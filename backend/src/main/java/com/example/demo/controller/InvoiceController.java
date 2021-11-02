@@ -28,7 +28,7 @@ public class InvoiceController {
         return invoiceResponseList;
     }
 
-    @GetMapping(value = "/invoices/users/{id}")
+     @GetMapping(value = "/invoices/users/{id}")
     public List<InvoiceResponse> getInvoicesByUserId(@PathVariable(value = "id") Long userId){
         return createInvoiceResponseList(invoiceService.findInvoiceByUserId(userId));
     }
@@ -40,6 +40,6 @@ public class InvoiceController {
 
     @PostMapping(value = "/invoices/")
     public InvoiceResponse createInvoice(@RequestBody CreateInvoiceRequest createInvoiceRequest){
-        return invoiceService.createInvoice(createInvoiceRequest).createInvoiceResponse();
+        return invoiceService.createInvoice(createInvoiceRequest.getUserId(), createInvoiceRequest.getProductIdList()).createInvoiceResponse();
     }
 }
