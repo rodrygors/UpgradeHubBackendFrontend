@@ -6,7 +6,7 @@ import UserForm from "./UserForm";
 
 
 
-const User = () => {
+const User = ({ user }) => {
   const [edit, setEdit] = useState(false);
 
   return (
@@ -18,14 +18,18 @@ const User = () => {
       }}
     >
       <div>
-        <h3>Username</h3>
-        <h3>password</h3>
-        <h3>Age</h3>
+        <h3>Username: {user.name}</h3>
+        <h3>password: {user.password}</h3>
+        <h3>Age: {user.age}</h3>
       </div>
-      {edit ? <UserForm /> : null}
-      <div></div>
-
-      <button onClick={() => setEdit(false)}>edit</button>
+      <div>{edit ? <UserForm /> : null}</div>
+      <div>
+        {edit ? (
+          <button onClick={() => setEdit(false)}>edit</button>
+        ) : (
+          <button onClick={() => setEdit(true)}>edit</button>
+        )}
+      </div>
     </div>
   );
 };

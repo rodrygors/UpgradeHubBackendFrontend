@@ -5,6 +5,7 @@ import User from "./components/User/User";
 import "./App.css";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
+import Invoice from "./components/Invoices/Invoice";
 
 function App() {
   const [user, setUser] = useState({});
@@ -15,17 +16,24 @@ function App() {
       <div className="App">
         {isLogged ? (
           <div>
-            <p>User is Logged. Hi {user.name}</p>
             <Navbar />
+            <p>User is Logged. Hi {user.name}</p>
           </div>
         ) : (
           <Login setIsLogged={setIsLogged} setUser={setUser} />
         )}
 
         <Switch>
-          <Route path="/user">
-            <User />
-          </Route>
+          {isLogged && (
+            <>
+              <Route path="/user">
+                <User user={user} />
+              </Route>
+              <Route path="/invoice">
+                <Invoice />
+              </Route>
+            </>
+          )}
         </Switch>
       </div>
     </Router>
