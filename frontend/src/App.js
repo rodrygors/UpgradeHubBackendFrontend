@@ -23,9 +23,11 @@ function App() {
         )}
 
         <Switch>
-          <Route path="/user">
-            <User />
-          </Route>
+          {isLogged && (
+            <Route path="/user">
+              <User user={user} />
+            </Route>
+          )}
         </Switch>
       </div>
     </Router>

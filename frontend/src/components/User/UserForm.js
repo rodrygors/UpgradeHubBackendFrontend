@@ -5,32 +5,30 @@ import { useState } from "react";
 
 
 const UserForm = () => {
-
-    return(
+  return (
     <div>
-                    <Form>
-                                <Form.Group className="Username" controlId="formUser">
-                                    <Form.Label>Username</Form.Label>
-                                    <Form.Control placeholder="your username"/>
-                                </Form.Group>
+      <Form>
+        <Form.Group className="Username" controlId="formUser">
+          <Form.Label>Username</Form.Label>
+          <Form.Control placeholder="your username" />
+        </Form.Group>
 
-                                <Form.Group className="password" controlId="formUser">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control placeholder="your password"/>
-                                </Form.Group>
+        <Form.Group className="password" controlId="formUser">
+          <Form.Label>Password</Form.Label>
+          <Form.Control placeholder="your password" />
+        </Form.Group>
 
-                                <Form.Group className="Age" controlId="formUser">
-                                    <Form.Label>Age</Form.Label>
-                                    <Form.Control placeholder="your Age"/>
-                                </Form.Group>
+        <Form.Group className="Age" controlId="formUser">
+          <Form.Label>Age</Form.Label>
+          <Form.Control placeholder="your Age" />
+        </Form.Group>
 
-
-                    <Button variant="primary" type="submit" className="submitButton">
-                Submit
-                </Button>
-                    </Form>
-                    </div>
-    )}
-
+        <Button variant="primary" type="submit" className="submitButton">
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
 
 export default UserForm;
