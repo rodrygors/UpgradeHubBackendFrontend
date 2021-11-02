@@ -11,14 +11,17 @@ function App() {
 
   return (
     <div className="App">
-      {isLogged ? (
+      {
+        <User/>
+        
+        /*isLogged ? (
         <div>
           <p>User is Logged. Hi {user.name}</p>
           <User />
         </div>
       ) : (
         <Login setIsLogged={setIsLogged} setUser={setUser} />
-      )}
+      )*/}
     </div>
   );
 }

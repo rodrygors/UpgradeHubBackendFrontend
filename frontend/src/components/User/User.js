@@ -12,24 +12,24 @@ const User = () => {
 
         return (
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                
-                
-                    <div>
-                <h3>Username</h3>
-                <h3>password</h3>
-                <h3>Age</h3>
-                
-                
-                    </div>
-                    {edit ? (
+                <div>
+                    <h3>Username</h3>
+                    <h3>password</h3>
+                    <h3>Age</h3>
+
+                </div>
+                <div>   
+                 {edit ? (
                     <UserForm />
                     ) : (
                     null )}
-                <div>
-                    
                 </div>
-                
-                <button onClick={setEdit(false)}>edit</button>
+                <div>
+                    {edit ? (
+                        <button onClick={() => setEdit(false)}>edit</button>
+                        ) : (
+                            <button onClick={() => setEdit(true)}>edit</button> )}
+                            </div>
             </div>
         )
 }
