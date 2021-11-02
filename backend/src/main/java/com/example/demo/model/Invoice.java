@@ -47,6 +47,7 @@ public class Invoice {
                 this.id,
                 this.number,
                 this.total,
+                this.user.getId(),
                 productResponseList
         );
     }

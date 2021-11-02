@@ -52,11 +52,14 @@ public class InvoiceService {
         }
         User user = this.findUserById(userId);
 
-        return invoiceRepository.save(Invoice
-                .builder()
+        Invoice invoice = invoiceRepository.save(Invoice.builder()
                 .total(total)
                 .user(user)
                 .invoice_product(products)
                 .build());
+
+        user.getInvoices().add(invoice);
+        userRepository.save(user);
+        return invoice;
     }
 }
