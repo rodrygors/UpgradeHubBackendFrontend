@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
-import com.example.demo.model.response.UserResponse;
+import com.example.demo.controller.response.UserResponse;
 import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.RestController;
 
