@@ -40,6 +40,6 @@ public class InvoiceController {
 
     @PostMapping(value = "/invoices/")
     public InvoiceResponse createInvoice(@RequestBody CreateInvoiceRequest createInvoiceRequest){
-        return invoiceService.createInvoice(createInvoiceRequest).createInvoiceResponse();
+        return invoiceService.createInvoice(createInvoiceRequest.getUserId(), createInvoiceRequest.getProductIdList()).createInvoiceResponse();
     }
 }
