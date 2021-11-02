@@ -1,21 +1,35 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ setIsLogged, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [failedLoggin, setFailedLoggin] = useState(false);
   const url = "https://6181431832c9e2001780472a.mockapi.io/username";
 
   const getUser = (e) => {
     e.preventDefault();
-    //fazer request ao endpoint para receber um user
     axios.get(url).then((response) => {
-      console.log(response.data);
+      const user = response.data.find(
+        (user) => username === user.name && password === user.password
+      );
+      if (user !== undefined) {
+        setIsLogged(true);
+        setUser({
+          name: user.name,
+          id: user.id,
+          password: user.password,
+          age: user.age,
+        });
+      } else {
+        setFailedLoggin(true);
+      }
     });
   };
 
   return (
     <div>
+      {failedLoggin ? <p>Username or password are incorrect!</p> : ""}
       <form onSubmit={getUser}>
         <label htmlFor="username">Username</label>
         <input

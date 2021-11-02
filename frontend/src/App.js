@@ -1,18 +1,24 @@
-//import Login from "./components/Login/Login";
+import Login from "./components/Login/Login";
 
-import User from "./Components/User/User";
+import User from "./components/User/User";
 
 import "./App.css";
+import { useState } from "react";
 
 function App() {
-  //Definir um state com um user para depois passar para a aplicação
-
-  //Definir um state (boolean) para saber se o utilizador esta logado ou não
+  const [user, setUser] = useState({});
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <div className="App">
-    
-      <User />
+      {isLogged ? (
+        <div>
+          <p>User is Logged. Hi {user.name}</p>
+          <User />
+        </div>
+      ) : (
+        <Login setIsLogged={setIsLogged} setUser={setUser} />
+      )}
     </div>
   );
 }
