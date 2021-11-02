@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootPassword
       MYSQL_DATABASE: project
   project:
-    image: project
+    image: 'project'
     ports:
       - "8080:8080"
     environment:
