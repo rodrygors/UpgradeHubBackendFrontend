@@ -21,15 +21,14 @@ const User = ({ user }) => {
         <h3>Username: {user.name}</h3>
         <h3>password: {user.password}</h3>
         <h3>Age: {user.age}</h3>
-      </div>
-      <div>{edit ? <UserForm /> : null}</div>
-      <div>
         {edit ? (
           <button onClick={() => setEdit(false)}>edit</button>
         ) : (
           <button onClick={() => setEdit(true)}>edit</button>
         )}
       </div>
+      <div>{edit ? <UserForm /> : null}</div>
+      
     </div>
   );
 };
