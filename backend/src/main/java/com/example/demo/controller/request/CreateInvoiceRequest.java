@@ -2,6 +2,7 @@ package com.example.demo.controller.request;
 
 import com.example.demo.model.Invoice;
 import com.example.demo.model.Product;
+import com.example.demo.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,16 +15,19 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvoiceRequest {
+public class CreateInvoiceRequest {
     private int number;
     private float total;
+    private Long userId;
+    private List<Long> productIdList;
 
     @JsonIgnore
-    public Invoice createInvoice(List<Product> products){
+    public Invoice createInvoice(User user, List<Product> products){
         return Invoice
                 .builder()
                 .number(this.number)
                 .total(this.total)
+                .user(user)
                 .invoice_product(products)
                 .build();
     }
