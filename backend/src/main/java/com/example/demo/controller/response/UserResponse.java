@@ -14,5 +14,5 @@ public class UserResponse {
     private String name;
     private String password;
     private int age;
-    private List<InvoiceResponse> invoiceResponseList;
+    private List<InvoiceResponse> invoices;
 }

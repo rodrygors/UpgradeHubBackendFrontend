@@ -30,7 +30,7 @@ public class User {
     public UserResponse createUserResponse(){
         List<InvoiceResponse> invoiceResponseList = new ArrayList<>();
 
-        if(!invoices.isEmpty()){
+        if(invoices != null && !invoices.isEmpty()){
             for (Invoice invoice : invoices) {
                 invoiceResponseList.add(invoice.createInvoiceResponse());
             }

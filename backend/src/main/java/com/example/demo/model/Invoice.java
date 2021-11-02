@@ -38,7 +38,7 @@ public class Invoice {
     @JsonIgnore
     public InvoiceResponse createInvoiceResponse(){
         List<ProductResponse> productResponseList = new ArrayList<>();
-        if(!invoice_product.isEmpty()){
+        if(invoice_product != null && !invoice_product.isEmpty()){
             for(Product product : invoice_product){
                 productResponseList.add(product.createProductResponse());
             }
