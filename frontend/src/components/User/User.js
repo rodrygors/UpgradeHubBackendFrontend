@@ -9,14 +9,6 @@ const User = ({ user }) => {
 
   const [change, setChange] = useState();
 
-  const [userup, setUserup] = useState();
-
-  // const res = axios.put('http://localhost:8080/users/' + user.id, {
-  //   age: '5',
-  //   name: 'string',
-  //   password: 'dada' }
-  //   );
-
   const handleChange = (event) => {
     setChange({ value: event.target.value });
   };
@@ -87,7 +79,7 @@ const User = ({ user }) => {
                     <input
                       type="text"
                       value={change.password}
-                      onChange={(e) => setChange(e.target.value)}
+                      onChange={(e) => setChange({ ...change, password: e.target.value })}
                     />
                   </label>
 
@@ -96,7 +88,7 @@ const User = ({ user }) => {
                     <input
                       type="number"
                       value={change.age}
-                      onChange={(e) => setChange(change.age)}
+                      onChange={(e) => setChange({ ...change, age: e.target.value })}
                     />
                   </label>
                   <button type="submit" value="Submit" />
