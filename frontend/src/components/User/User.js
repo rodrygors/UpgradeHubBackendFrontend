@@ -91,7 +91,9 @@ const User = ({ user }) => {
                       onChange={(e) => setChange({ ...change, age: e.target.value })}
                     />
                   </label>
-                  <button type="submit" value="Submit" />
+                  <button type="submit" value="Submit" class="edit-btn">
+                      Edit User
+                  </button>
                 </form>
               </div>
             ) : null}

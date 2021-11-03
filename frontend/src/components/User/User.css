@@ -97,3 +97,21 @@ img {
   position: relative;
   border-bottom: 2px solid var(--line-input);
 }
+
+.edit-btn {
+  font-size: 12px;
+  color: var(--white-color);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 30px;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  transition: all 0.4s;
+}
+
+.edit-btn:hover  {
+  background-color: var(--highligth-text);
+}
