@@ -52,19 +52,20 @@ const User = ({ user }) => {
             </div>
 
             {edit ? (
-              <button onClick={() => setEdit(false)}>edit</button>
+              <button class="edit-btn" onClick={() => setEdit(false)}>edit</button>
             ) : (
-              <button onClick={() => setEdit(true)}>edit</button>
+              <button class="edit-btn" onClick={() => setEdit(true)}>edit</button>
             )}
           </div>
 
           <div>
             {edit ? (
-              <div>
+              <div class="edit_card">
+                
                 <form onSubmit={() => handleSubmit(change)}>
+                <div class="info-edit">
                   <label>
                     Name:
-                    {/* <input type="text" value={user.name} onChange={()=> setChange(change.name)} /> */}
                     <input
                       type="text"
                       value={change.name}
@@ -82,6 +83,7 @@ const User = ({ user }) => {
                       onChange={(e) => setChange({ ...change, password: e.target.value })}
                     />
                   </label>
+                  
 
                   <label>
                     age:
@@ -91,8 +93,10 @@ const User = ({ user }) => {
                       onChange={(e) => setChange({ ...change, age: e.target.value })}
                     />
                   </label>
+                  </div>
+                  
                   <button type="submit" value="Submit" class="edit-btn">
-                      Edit User
+                      Submit
                   </button>
                 </form>
               </div>
