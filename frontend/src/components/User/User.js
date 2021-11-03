@@ -49,7 +49,7 @@ const User = ({ user }) => {
       <div>{edit ? 
       <div>
 
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <label>
           Name:
           <input type="text" value={change.name} onChange={handleChange} />
@@ -66,7 +66,7 @@ const User = ({ user }) => {
         </label>
         <button type="submit" value="Submit" />
 
-      </form>
+      </form> */}
 
     </div>
      : null}</div>
