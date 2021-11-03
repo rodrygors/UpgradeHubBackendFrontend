@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.response.InvoiceResponse;
 import com.example.demo.exception.InvoiceNotFound;
 import com.example.demo.exception.ProductNotFound;
 import com.example.demo.exception.UserNotFound;
@@ -25,15 +26,6 @@ public class InvoiceService {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
     }
-    public void deleteInvoice(Long id) {
-        Invoice invoice = this.findInvoiceById(id);
-        invoice.getInvoice_product().clear();
-        invoice.getUser().getInvoices().remove(invoice);
-        userRepository.save(invoice.getUser());
-        invoiceRepository.save(invoice);
-        invoiceRepository.deleteById(id);
-    }
-
     private User findUserById(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFound::new);
     }
@@ -71,9 +63,21 @@ public class InvoiceService {
         return invoice;
     }
 
-    public Invoice addProductToInvoce(Long productId, Long invoiceId) {
+    public Invoice addProductToInvoice(Long productId, Long invoiceId) {
         Invoice invoice = this.findInvoiceById(invoiceId);
         invoice.getInvoice_product().add(this.findProductById(productId));
         return invoiceRepository.save(invoice);
+    }
+
+
+    public void deleteInvoice(Long id) {
+        Invoice invoice = this.findInvoiceById(id);
+        invoice.getUser().getInvoices().remove(invoice);
+        userRepository.save(invoice.getUser());
+        invoiceRepository.deleteById(id);
+    }
+
+    public List<Invoice> getHighestBills() {
+        return invoiceRepository.findHighestInvoices();
     }
 }

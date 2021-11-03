@@ -34,11 +34,6 @@ public class ProductController {
 
     }
 
-    @PostMapping("/products")
-    public ProductResponse createProduct(@RequestBody ProductRequest productRequest) {
-        return productService.addProduct(productRequest.createProduct()).createProductResponse();
-
-    }
 
     @GetMapping("/products/{id}")
     public ProductResponse getById(@PathVariable Long id) {
@@ -49,6 +44,17 @@ public class ProductController {
     public List<ProductResponse> getAllProducts() {
         return createProductResponseList(productService.findAll());
     }
+
+    @GetMapping("/products/sort/{sort}")
+    public List<ProductResponse> getSortedProducts(@PathVariable(value = "sort") String sort){
+        return createProductResponseList(productService.getSortedProducts(sort));
+    }
+
+    @PostMapping("/products")
+    public ProductResponse createProduct(@RequestBody ProductRequest productRequest) {
+        return productService.addProduct(productRequest.createProduct()).createProductResponse();
+    }
+
     @DeleteMapping(value = "/product/{id}")
     public void deleteProduct(@PathVariable(value = "id") Long id){
         productService.deleteProduct(id);
