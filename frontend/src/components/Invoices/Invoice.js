@@ -57,9 +57,17 @@ const Invoice = ({ user }) => {
     e.preventDefault();
     console.log(productIds);
 
-    axios
-      .post(invoiceEndPoint, productIds)
-      .then((response) => console.log(response));
+    // axios
+    //   .post(invoiceEndPoint, productIds)
+    //   .then((response) => console.log(response));
+
+    fetch(invoiceEndPoint, {
+      method: "POST",
+      body: JSON.stringify(productIds),
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
 
   return (
