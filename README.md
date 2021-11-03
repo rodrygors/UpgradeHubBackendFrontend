@@ -87,3 +87,12 @@
 ## → Start the frontend application
 - Open your terminal on ../frontend
 - run ```npm start```
+
+## → Populate the database to test frontend application
+- Go to http://localhost:8080/swagger-ui/#
+- Open user-controller
+- Use the createUser endpoint to create a user
+- You can now use this user to log into the application
+- Open product-controller
+- Use the createProduct endpoint to create products
+- You can now use this products to create invoices after loggin in
