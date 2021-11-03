@@ -25,11 +25,11 @@ public class Invoice {
 
     private float total;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_User")
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "invoice_product",
             joinColumns = @JoinColumn(name = "invoiceId"),
             inverseJoinColumns = @JoinColumn(name = "productId"))

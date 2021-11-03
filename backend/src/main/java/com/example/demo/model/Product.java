@@ -20,7 +20,7 @@ public class Product {
     private String name;
     private float value;
 
-    @ManyToMany(mappedBy = "invoice_product", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "invoice_product")
     private List<Invoice> invoices;
 
     @JsonIgnore
