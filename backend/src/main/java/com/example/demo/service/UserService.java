@@ -27,18 +27,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-
-    public void deleteUser(Long id) {
-        User user= this.findUserById(id);
-        for (Invoice invoice: user.getInvoices()){
-//            invoice.getInvoice_product().clear();
-//            user.getInvoices().remove(invoice);
-            invoiceRepository.deleteById(invoice.getId());
-        }
-//        userRepository.save(user);
-        userRepository.deleteById(id);
-    }
-
     public User updateUser(Long id, String name,String password,int age) {
         User user = this.findUserById(id);
         user.setName(name);
@@ -54,5 +42,13 @@ public class UserService {
     public User addUser(User user) {
         if(userRepository.existsByName(user.getName())) throw new UsernameAlreadyExists();
         else return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+        User user= this.findUserById(id);
+        for (Invoice invoice: user.getInvoices()){
+            invoiceRepository.deleteById(invoice.getId());
+        }
+        userRepository.deleteById(id);
     }
 }
