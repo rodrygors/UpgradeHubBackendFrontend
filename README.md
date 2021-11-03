@@ -43,7 +43,7 @@
  - Rafael Costa
  - Larissa Oliveira
  
-# Mandatory Tasks:
+# Mandatory tasks finish:
 
 - Login → Initial windows - without login you cannot make requests or navigate because you lack Token. 
 - Create Invoice → Form that allows you to add several products and attack the NewInvoice endpoint.
