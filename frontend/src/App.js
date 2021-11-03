@@ -1,7 +1,7 @@
 import Login from "./components/Login/Login";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import User from "./components/User/User";
-
+import { Redirect } from "react-router";
 import "./App.css";
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
@@ -17,7 +17,6 @@ function App() {
         {isLogged ? (
           <div>
             <Navbar />
-            <p>User is Logged. Hi {user.name}</p>
           </div>
         ) : (
           <Login setIsLogged={setIsLogged} setUser={setUser} />
@@ -26,11 +25,12 @@ function App() {
         <Switch>
           {isLogged && (
             <>
+              <Redirect to="/user" />
               <Route path="/user">
                 <User user={user} />
               </Route>
               <Route path="/invoice">
-                <Invoice />
+                <Invoice user={user} />
               </Route>
             </>
           )}
