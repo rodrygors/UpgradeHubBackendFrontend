@@ -25,43 +25,36 @@ const Invoice = ({ user }) => {
   const productsList = products.map((product) => {
     return (
       <div classname="container" key={product.id}>
-        <div classname="payment_details">
-          <h1>Choose your product</h1>
-          <div classname="details_card">
-            <div class="product_info">
-              <h3>{product.name}</h3>
-              <div classname="product_rate_info">
-                <p>{product.value}€</p>
+        <h3 className="container-title">{product.name}</h3>
+        <p>{product.value}€</p>
 
-                <label>Pick the number of products</label>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setProductIds((prev) => ({
-                      ...prev,
-                      productIdList: [...prev.productIdList, product.id],
-                    }));
-                  }}
-                >
-                  +
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setProductIds((prev) => ({
-                      ...prev,
-                      productIdList: prev.productIdList.filter(
-                        (productID) => productID !== product.id
-                      ),
-                    }));
-                  }}
-                >
-                  -
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <label>Pick the number of products</label>
+        <button
+          type="button"
+          className="pqt-plus"
+          onClick={() => {
+            setProductIds((prev) => ({
+              ...prev,
+              productIdList: [...prev.productIdList, product.id],
+            }));
+          }}
+        >
+          +
+        </button>
+        <button
+          type="button"
+          className="pqt-minus"
+          onClick={() => {
+            setProductIds((prev) => ({
+              ...prev,
+              productIdList: prev.productIdList.filter(
+                (productID) => productID !== product.id
+              ),
+            }));
+          }}
+        >
+          -
+        </button>
       </div>
     );
   });
@@ -76,19 +69,22 @@ const Invoice = ({ user }) => {
   };
 
   return (
-    <div>
+    <div className="container-flex">
       <div>
         <form onSubmit={createInvoice}>
-          <div>{productsList ? productsList : "The list is empty!"}</div>
+          <div>
+            <h2>Choose your product</h2>
+            {productsList ? productsList : "The list is empty!"}
+          </div>
           <div classname="shipping_card">
             <div classname="new_card">
-              <p>Products Picked:</p>
+              <p>Products ID Picked:</p>
               {productIds.productIdList.map((productId, index) => (
                 <li key={index}>{productId}</li>
               ))}
             </div>
           </div>
-          <div class="proced_payment">
+          <div className="proced_payment">
             <button type="submit">Submit Invoice</button>
           </div>
         </form>

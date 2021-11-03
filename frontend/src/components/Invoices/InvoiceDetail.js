@@ -16,21 +16,22 @@ const InvoiceDetail = ({ invoiceId }) => {
 
   return (
     <div>
+      <h2>Invoice Detail</h2>
       {invoice.map((invoice) => {
         return (
-          <div key={invoice.id}>
+          <div className="summary_card" key={invoice.id}>
             <h1>Id: {invoice.id}</h1>
-            <p>Id: {invoice.total}</p>
             <div>
               {invoice.products.map((product) => {
                 return (
                   <div key={product.id}>
                     <h3>{product.name}</h3>
-                    <p>Valor: {product.value}</p>
+                    <p>Valor: {product.value}€</p>
                   </div>
                 );
               })}
             </div>
+            <p>Total: {invoice.total}€</p>
           </div>
         );
       })}
