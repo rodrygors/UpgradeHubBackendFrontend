@@ -11,7 +11,7 @@ const Invoice = ({ user }) => {
   const [invoices, setUserInvoices] = useState(user.invoices);
   const [products, setProducts] = useState([]);
   const [productIds, setProductIds] = useState({
-    productIdsList: [],
+    productIdList: [],
     userId: user.id,
   });
   const [invoiceId, setInvoiceId] = useState(null);
@@ -39,17 +39,18 @@ const Invoice = ({ user }) => {
                   onClick={() => {
                     setProductIds((prev) => ({
                       ...prev,
-                      productIdsList: [...prev.productIdsList, product.id],
+                      productIdList: [...prev.productIdList, product.id],
                     }));
                   }}
                 >
                   +
                 </button>
                 <button
+                  type="button"
                   onClick={() => {
                     setProductIds((prev) => ({
                       ...prev,
-                      productIdsList: prev.productIdsList.filter(
+                      productIdList: prev.productIdList.filter(
                         (productID) => productID !== product.id
                       ),
                     }));
@@ -68,19 +69,10 @@ const Invoice = ({ user }) => {
   //Create invoice -> make the request
   const createInvoice = (e) => {
     e.preventDefault();
-    console.log(productIds);
 
-    // axios
-    //   .post(invoiceEndPoint, productIds)
-    //   .then((response) => console.log(response));
-
-    fetch(invoiceEndPoint, {
-      method: "POST",
-      body: JSON.stringify(productIds),
-      headers: { "Content-type": "application/json; charset=UTF-8" },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    axios.post(invoiceEndPoint, productIds).then((response) => {
+      setUserInvoices((prev) => [...prev, response.data]);
+    });
   };
 
   return (
@@ -91,7 +83,7 @@ const Invoice = ({ user }) => {
           <div classname="shipping_card">
             <div classname="new_card">
               <p>Products Picked:</p>
-              {productIds.productIdsList.map((productId, index) => (
+              {productIds.productIdList.map((productId, index) => (
                 <li key={index}>{productId}</li>
               ))}
             </div>
