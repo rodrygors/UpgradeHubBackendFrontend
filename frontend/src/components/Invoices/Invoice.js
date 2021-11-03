@@ -86,10 +86,14 @@ const Invoice = ({ user }) => {
       <div>
         <form onSubmit={createInvoice}>
           <div>{productsList ? productsList : "The list is empty!"}</div>
+          <div classname="shipping_card">
+          <div classname="new_card">
           <p>Products Picked:</p>
           {productIds.productIdsList.map((productId, index) => (
             <li key={index}>{productId}</li>
           ))}
+          </div>
+          </div>
           <div class="proced_payment">
             <button type="submit">Submit Invoice</button>
           </div>
