@@ -23,7 +23,7 @@ public class User {
     private String password;
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<Invoice> invoices = new ArrayList<>();
 
     @JsonIgnore
