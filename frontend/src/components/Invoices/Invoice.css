@@ -16,6 +16,7 @@
     justify-content: space-evenly;
     align-items: center;
     background-color: #f9fafc;
+    margin-left: 10px;
   }
 
   .details_card {
