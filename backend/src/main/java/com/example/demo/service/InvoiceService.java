@@ -25,6 +25,14 @@ public class InvoiceService {
         this.userRepository = userRepository;
         this.productRepository = productRepository;
     }
+    public void deleteInvoice(Long id) {
+        Invoice invoice = this.findInvoiceById(id);
+        invoice.getInvoice_product().clear();
+        invoice.getUser().getInvoices().remove(invoice);
+        userRepository.save(invoice.getUser());
+        invoiceRepository.save(invoice);
+        invoiceRepository.deleteById(id);
+    }
 
     private User findUserById(Long id) {
         return userRepository.findById(id).orElseThrow(UserNotFound::new);
@@ -61,5 +69,11 @@ public class InvoiceService {
         user.getInvoices().add(invoice);
         userRepository.save(user);
         return invoice;
+    }
+
+    public Invoice addProductToInvoce(Long productId, Long invoiceId) {
+        Invoice invoice = this.findInvoiceById(invoiceId);
+        invoice.getInvoice_product().add(this.findProductById(productId));
+        return invoiceRepository.save(invoice);
     }
 }
