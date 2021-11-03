@@ -23,14 +23,14 @@ public class User {
     private String password;
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<Invoice> invoices = new ArrayList<>();
 
     @JsonIgnore
     public UserResponse createUserResponse(){
         List<InvoiceResponse> invoiceResponseList = new ArrayList<>();
 
-        if(!invoices.isEmpty()){
+        if(invoices != null && !invoices.isEmpty()){
             for (Invoice invoice : invoices) {
                 invoiceResponseList.add(invoice.createInvoiceResponse());
             }

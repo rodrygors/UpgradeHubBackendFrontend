@@ -1,9 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.request.UserRequest;
-import com.example.demo.controller.response.UserResponse;
 import com.example.demo.exception.UserNotFound;
+import com.example.demo.exception.UsernameAlreadyExists;
+import com.example.demo.model.Invoice;
 import com.example.demo.model.User;
+import com.example.demo.repository.InvoiceRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,11 @@ import java.util.List;
 public class UserService {
     @Autowired
     private final UserRepository userRepository;
+    private final InvoiceRepository invoiceRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, InvoiceRepository invoiceRepository) {
         this.userRepository = userRepository;
+        this.invoiceRepository = invoiceRepository;
     }
 
     public List<User> findAllUsers() {
@@ -24,15 +27,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
-
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
-
     public User updateUser(Long id, String name,String password,int age) {
         User user = this.findUserById(id);
         user.setName(name);
-       user.setPassword(password);
+        user.setPassword(password);
         user.setAge(age);
         return userRepository.save(user);
     }
@@ -42,6 +40,15 @@ public class UserService {
     }
 
     public User addUser(User user) {
-        return userRepository.save(user);
+        if(userRepository.existsByName(user.getName())) throw new UsernameAlreadyExists();
+        else return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+        User user= this.findUserById(id);
+        for (Invoice invoice: user.getInvoices()){
+            invoiceRepository.deleteById(invoice.getId());
+        }
+        userRepository.deleteById(id);
     }
 }
