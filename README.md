@@ -33,7 +33,7 @@
  - create an Endpoint to delete Invoices
  - create an Endpoint to delete Products
  - create an endpoint to search for the 5 highest bills
- - create an endpoint to for cheaper products. 
+ - create an endpoint to  search for cheaper products. 
  
 # FrontEnd 
 
@@ -68,5 +68,15 @@
 - mvn clear
 - mvn install
 
-## → Docker compose
--
+## → if you're using intellij Ide, please install docker plugin
+
+-When you open the project you need to run in terminal these commands:
+
+``` docker-compose -f src\main\resources up ```
+``` docker ps ``` --> to check if u r in the right place 
+
+ → and run the project
+ 
+``` mvnw spring-boot:run ```
+
+
