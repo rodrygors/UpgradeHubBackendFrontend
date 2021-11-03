@@ -9,14 +9,6 @@ const User = ({ user }) => {
 
   const [change, setChange] = useState();
 
-  const [userup, setUserup] = useState();
-
-  // const res = axios.put('http://localhost:8080/users/' + user.id, {
-  //   age: '5',
-  //   name: 'string',
-  //   password: 'dada' }
-  //   );
-
   const handleChange = (event) => {
     setChange({ value: event.target.value });
   };
@@ -60,19 +52,20 @@ const User = ({ user }) => {
             </div>
 
             {edit ? (
-              <button onClick={() => setEdit(false)}>edit</button>
+              <button class="edit-btn" onClick={() => setEdit(false)}>edit</button>
             ) : (
-              <button onClick={() => setEdit(true)}>edit</button>
+              <button class="edit-btn" onClick={() => setEdit(true)}>edit</button>
             )}
           </div>
 
           <div>
             {edit ? (
-              <div>
+              <div class="edit_card">
+                
                 <form onSubmit={() => handleSubmit(change)}>
+                <div class="info-edit">
                   <label>
                     Name:
-                    {/* <input type="text" value={user.name} onChange={()=> setChange(change.name)} /> */}
                     <input
                       type="text"
                       value={change.name}
@@ -87,19 +80,24 @@ const User = ({ user }) => {
                     <input
                       type="text"
                       value={change.password}
-                      onChange={(e) => setChange(e.target.value)}
+                      onChange={(e) => setChange({ ...change, password: e.target.value })}
                     />
                   </label>
+                  
 
                   <label>
                     age:
                     <input
                       type="number"
                       value={change.age}
-                      onChange={(e) => setChange(change.age)}
+                      onChange={(e) => setChange({ ...change, age: e.target.value })}
                     />
                   </label>
-                  <button type="submit" value="Submit" />
+                  </div>
+                  
+                  <button type="submit" value="Submit" class="edit-btn">
+                      Submit
+                  </button>
                 </form>
               </div>
             ) : null}
