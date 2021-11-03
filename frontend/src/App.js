@@ -17,7 +17,6 @@ function App() {
         {isLogged ? (
           <div>
             <Navbar />
-            <p>User is Logged. Hi {user.name}</p>
           </div>
         ) : (
           <Login setIsLogged={setIsLogged} setUser={setUser} />
