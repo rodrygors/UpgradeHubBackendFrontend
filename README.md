@@ -87,14 +87,3 @@
 ## → Start the frontend application
 - Open your terminal on ../frontend
 - run ```npm start```
-
-# Recomendations
-## → if you're using intellij Ide, please install docker plugin
--When you open the project you need to run in terminal these commands:
-
-``` docker-compose -f src\main\resources up ```
-``` docker ps ``` --> to check if u r in the right place 
-
- → and run the project
- 
-``` mvnw spring-boot:run ```
