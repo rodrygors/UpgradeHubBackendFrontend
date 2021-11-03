@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import InvoiceList from "./Invoicelist";
+import InvoiceDetail from "./InvoiceDetail";
 
 const Invoice = ({ user }) => {
   //States
@@ -12,6 +13,7 @@ const Invoice = ({ user }) => {
     productIdsList: [],
     userId: user.id,
   });
+  const [invoiceId, setInvoiceId] = useState(null);
 
   //Get products from API
   useEffect(() => {
@@ -37,6 +39,7 @@ const Invoice = ({ user }) => {
           Add
         </button>
         <button
+          type="button"
           onClick={() => {
             setProductIds((prev) => ({
               ...prev,
@@ -83,7 +86,10 @@ const Invoice = ({ user }) => {
         </form>
       </div>
       <div>
-        <InvoiceList invoices={invoices} />
+        <InvoiceList setInvoiceId={setInvoiceId} invoices={invoices} />
+      </div>
+      <div>
+        <InvoiceDetail invoiceId={invoiceId} />
       </div>
     </div>
   );
