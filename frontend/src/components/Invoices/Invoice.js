@@ -4,9 +4,10 @@ import InvoiceList from "./Invoicelist";
 
 const Invoice = ({ user }) => {
   //States
+  const productsEndPoint = "http://localhost:8080/products";
+  const invoiceEndPoint = "http://localhost:8080/invoices";
   const [invoices, setUserInvoices] = useState(user.invoices);
   const [products, setProducts] = useState([]);
-  const productsEndPoint = "http://localhost:8080/products";
   const [productIds, setProductIds] = useState({
     productIdsList: [],
     userId: user.id,
@@ -55,6 +56,10 @@ const Invoice = ({ user }) => {
   const createInvoice = (e) => {
     e.preventDefault();
     console.log(productIds);
+
+    axios
+      .post(invoiceEndPoint, productIds)
+      .then((response) => console.log(response));
   };
 
   return (
