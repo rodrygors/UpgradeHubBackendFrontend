@@ -1,6 +1,6 @@
 # UpgradeHubBackendFrontend
 
-# Final project- Front and Backend
+## Final project- Front and Backend
 
 # Backend:
 
@@ -76,8 +76,20 @@
 - Open your terminal on ../backend/src/main/resources
 - run ```docker compose up```
 
-## → if you're using intellij Ide, please install docker plugin
+## → Install npm
+- Go to https://phoenixnap.com/kb/install-node-js-npm-on-windows
+- Download and install npm
 
+## → Download depedencies
+- Open your terminal on ../frontend
+- run ```npm i```
+
+## → Start the frontend application
+- Open your terminal on ../frontend
+- run ```npm start```
+
+# Recomendations
+## → if you're using intellij Ide, please install docker plugin
 -When you open the project you need to run in terminal these commands:
 
 ``` docker-compose -f src\main\resources up ```
@@ -86,5 +98,3 @@
  → and run the project
  
 ``` mvnw spring-boot:run ```
-
-
