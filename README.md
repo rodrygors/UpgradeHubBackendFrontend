@@ -8,7 +8,7 @@
 
 - Ana Catarina Simões
 - Rodrigo Silva
-- Danilson Pires
+- Danilson Pinto
 
 # Mandatory Tasks:
 
