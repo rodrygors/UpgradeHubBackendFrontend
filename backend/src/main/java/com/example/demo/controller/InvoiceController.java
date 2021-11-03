@@ -39,6 +39,11 @@ public class InvoiceController {
         return invoiceService.findInvoiceById(id).createInvoiceResponse();
     }
 
+    @GetMapping(value = "/invoices/highest-bills")
+    public List<InvoiceResponse> getHighestBills(){
+        return createInvoiceResponseList(invoiceService.getHighestBills());
+    }
+
     @PostMapping(value = "/invoices/")
     public InvoiceResponse createInvoice(@RequestBody CreateInvoiceRequest createInvoiceRequest) {
         return invoiceService.createInvoice(createInvoiceRequest.getUserId(), createInvoiceRequest.getProductIdList()).createInvoiceResponse();
@@ -46,7 +51,7 @@ public class InvoiceController {
 
     @PutMapping(value = "/invoices/{invoiceId}/products/{productId}")
     public InvoiceResponse addProductToInvoice(@PathVariable(value = "productId") Long productId, @PathVariable(value = "invoiceId") Long invoiceId) {
-        return invoiceService.addProductToInvoce(productId, invoiceId).createInvoiceResponse();
+        return invoiceService.addProductToInvoice(productId, invoiceId).createInvoiceResponse();
     }
 
     @DeleteMapping(value = "/invoice/{id}")

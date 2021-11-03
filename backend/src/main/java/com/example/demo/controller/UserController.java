@@ -27,17 +27,18 @@ public class UserController {
         }
         return userResponseList;
     }
+
     @GetMapping(value = "/users")
     public List<UserResponse> getAllUsers(){
         return createUserResponseList(userService.findAllUsers());
     }
     @PutMapping(value = "/user/{id}")
-    public User updateUser(@PathVariable(value = "id") Long id, @RequestBody UserRequest userRequest){
+    public UserResponse updateUser(@PathVariable(value = "id") Long id, @RequestBody UserRequest userRequest){
         return userService.updateUser(
                 id,
                 userRequest.getName(),
                 userRequest.getPassword(),
-                userRequest.getAge());
+                userRequest.getAge()).createUserResponse();
     }
     @DeleteMapping(value = "/user/{id}")
     public void deleteUser(@PathVariable(value = "id") Long id){
