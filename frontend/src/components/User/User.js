@@ -9,13 +9,7 @@ const User = ({ user }) => {
 
   const [change, setChange] = useState();
 
-  const handleChange = (event) => {
-    setChange({ value: event.target.value });
-  };
-
   function handleSubmit() {
-    console.log(change);
-    console.log(change.name);
     axios.put("http://localhost:8080/user/" + change.id, {
       age: change.age,
       name: change.name,
@@ -27,9 +21,6 @@ const User = ({ user }) => {
   useEffect(() => {
     setChange(user);
   }, [user]);
-
-  //  console.log(user)
-  console.log(change);
 
   return (
     <div className="container">
@@ -52,51 +43,57 @@ const User = ({ user }) => {
             </div>
 
             {edit ? (
-              <button class="edit-btn" onClick={() => setEdit(false)}>edit</button>
+              <button className="edit-btn" onClick={() => setEdit(false)}>
+                edit
+              </button>
             ) : (
-              <button class="edit-btn" onClick={() => setEdit(true)}>edit</button>
+              <button className="edit-btn" onClick={() => setEdit(true)}>
+                edit
+              </button>
             )}
           </div>
 
           <div>
             {edit ? (
               <div class="edit_card">
-                
                 <form onSubmit={() => handleSubmit(change)}>
-                <div class="info-edit">
-                  <label>
-                    Name:
-                    <input
-                      type="text"
-                      value={change.name}
-                      onChange={(e) => {
-                        setChange({ ...change, name: e.target.value });
-                      }}
-                    />
-                  </label>
+                  <div class="info-edit">
+                    <label>
+                      Name:
+                      <input
+                        type="text"
+                        value={change.name}
+                        onChange={(e) => {
+                          setChange({ ...change, name: e.target.value });
+                        }}
+                      />
+                    </label>
 
-                  <label>
-                    password:
-                    <input
-                      type="text"
-                      value={change.password}
-                      onChange={(e) => setChange({ ...change, password: e.target.value })}
-                    />
-                  </label>
-                  
+                    <label>
+                      password:
+                      <input
+                        type="text"
+                        value={change.password}
+                        onChange={(e) =>
+                          setChange({ ...change, password: e.target.value })
+                        }
+                      />
+                    </label>
 
-                  <label>
-                    age:
-                    <input
-                      type="number"
-                      value={change.age}
-                      onChange={(e) => setChange({ ...change, age: e.target.value })}
-                    />
-                  </label>
+                    <label>
+                      age:
+                      <input
+                        type="number"
+                        value={change.age}
+                        onChange={(e) =>
+                          setChange({ ...change, age: e.target.value })
+                        }
+                      />
+                    </label>
                   </div>
-                  
+
                   <button type="submit" value="Submit" class="edit-btn">
-                      Submit
+                    Submit
                   </button>
                 </form>
               </div>

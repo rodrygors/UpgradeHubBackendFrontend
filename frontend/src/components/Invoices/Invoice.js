@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import InvoiceList from "./Invoicelist";
+import InvoiceDetail from "./InvoiceDetail";
+import "./Invoice.css";
 
 const Invoice = ({ user }) => {
   //States
@@ -9,9 +11,10 @@ const Invoice = ({ user }) => {
   const [invoices, setUserInvoices] = useState(user.invoices);
   const [products, setProducts] = useState([]);
   const [productIds, setProductIds] = useState({
-    productIdsList: [],
+    productIdList: [],
     userId: user.id,
   });
+  const [invoiceId, setInvoiceId] = useState(null);
 
   //Get products from API
   useEffect(() => {
@@ -21,32 +24,36 @@ const Invoice = ({ user }) => {
   //Map produtct array & Add the add button to add products and remove button
   const productsList = products.map((product) => {
     return (
-      <div key={product.id}>
-        <h3>{product.name}</h3>
+      <div classname="container" key={product.id}>
+        <h3 className="container-title">{product.name}</h3>
         <p>{product.value}€</p>
+
         <label>Pick the number of products</label>
         <button
           type="button"
+          className="pqt-plus"
           onClick={() => {
             setProductIds((prev) => ({
               ...prev,
-              productIdsList: [...prev.productIdsList, product.id],
+              productIdList: [...prev.productIdList, product.id],
             }));
           }}
         >
-          Add
+          +
         </button>
         <button
+          type="button"
+          className="pqt-minus"
           onClick={() => {
             setProductIds((prev) => ({
               ...prev,
-              productIdsList: prev.productIdsList.filter(
+              productIdList: prev.productIdList.filter(
                 (productID) => productID !== product.id
               ),
             }));
           }}
         >
-          Remove
+          -
         </button>
       </div>
     );
@@ -55,35 +62,38 @@ const Invoice = ({ user }) => {
   //Create invoice -> make the request
   const createInvoice = (e) => {
     e.preventDefault();
-    console.log(productIds);
 
-    // axios
-    //   .post(invoiceEndPoint, productIds)
-    //   .then((response) => console.log(response));
-
-    fetch(invoiceEndPoint, {
-      method: "POST",
-      body: JSON.stringify(productIds),
-      headers: { "Content-type": "application/json; charset=UTF-8" },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    axios.post(invoiceEndPoint, productIds).then((response) => {
+      setUserInvoices((prev) => [...prev, response.data]);
+    });
   };
 
   return (
-    <div>
+    <div className="container-flex">
       <div>
         <form onSubmit={createInvoice}>
-          <div>{productsList ? productsList : "The list is empty!"}</div>
-          <p>Products Picked:</p>
-          {productIds.productIdsList.map((productId, index) => (
-            <li key={index}>{productId}</li>
-          ))}
-          <button type="submit">Submit Invoice</button>
+          <div>
+            <h2>Choose your product</h2>
+            {productsList ? productsList : "The list is empty!"}
+          </div>
+          <div classname="shipping_card">
+            <div classname="new_card">
+              <p classname="picked">Products ID Picked:</p>
+              {productIds.productIdList.map((productId, index) => (
+                <li key={index}>{productId}</li>
+              ))}
+            </div>
+          </div>
+          <div className="proced_payment">
+            <button classname="submit_button" type="submit">Submit Invoice</button>
+          </div>
         </form>
       </div>
       <div>
-        <InvoiceList invoices={invoices} />
+        <InvoiceList setInvoiceId={setInvoiceId} invoices={invoices} />
+      </div>
+      <div>
+        <InvoiceDetail invoiceId={invoiceId} />
       </div>
     </div>
   );
