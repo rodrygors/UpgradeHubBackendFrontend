@@ -9,10 +9,6 @@ const User = ({ user }) => {
 
   const [change, setChange] = useState();
 
-  const handleChange = (event) => {
-    setChange({ value: event.target.value });
-  };
-
   function handleSubmit() {
     axios.put("http://localhost:8080/user/" + change.id, {
       age: change.age,

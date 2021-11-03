@@ -78,14 +78,14 @@ const Invoice = ({ user }) => {
           </div>
           <div classname="shipping_card">
             <div classname="new_card">
-              <p>Products ID Picked:</p>
+              <p classname="picked">Products ID Picked:</p>
               {productIds.productIdList.map((productId, index) => (
                 <li key={index}>{productId}</li>
               ))}
             </div>
           </div>
           <div className="proced_payment">
-            <button type="submit">Submit Invoice</button>
+            <button classname="submit_button" type="submit">Submit Invoice</button>
           </div>
         </form>
       </div>
