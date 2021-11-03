@@ -1,4 +1,5 @@
 # UpgradeHubBackendFrontend
+
 # Final project- Front and Backend
 
 # Backend:
@@ -33,8 +34,8 @@
  - create an Endpoint to delete Products
  - create an endpoint to search for the 5 highest bills
  - create an endpoint to for cheaper products. 
- - 
- # FrontEnd 
+ 
+# FrontEnd 
 
 ## Team:
 
