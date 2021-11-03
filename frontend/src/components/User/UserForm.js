@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
-const UserForm = () => {
+const UserForm = (user) => {
   //Receber info do user
   //Passar para o componente pai
   //
