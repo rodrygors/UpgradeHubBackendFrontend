@@ -43,7 +43,7 @@
  - Rafael Costa
  - Larissa Oliveira
  
-# Mandatory tasks finish:
+# Mandatory tasks finished:
 
 - Login → Initial windows - without login you cannot make requests or navigate because you lack Token. 
 - Create Invoice → Form that allows you to add several products and attack the NewInvoice endpoint.
@@ -62,11 +62,19 @@
 - React Events (onClick,onSubmit, onChange)
 - Responsive Css
 
-# Docker commands
+# How to run this project
+## → Install docker
+- Go to https://www.docker.com/products/docker-desktop
+- Download and install Docker Desktop
+- Follow this link's instructions to enable virtualization https://docs.microsoft.com/pt-pt/windows/wsl/install-manual
 
-## →  Docker file
-- mvn clear
-- mvn install
+## → Create Docker image of the backend aplication
+- Open your terminal on ../backend
+- run ```docker build -t project .```
+
+## → Run the docker compose file to run the backend application
+- Open your terminal on ../backend/src/main/resources
+- run ```docker compose up```
 
 ## → if you're using intellij Ide, please install docker plugin
 
