@@ -7,17 +7,12 @@ const Login = ({ setIsLogged, setUser }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [failedLoggin, setFailedLoggin] = useState(false);
-  let config = {
-    headers: {
-      Accept: "*/*",
-    },
-  };
-  const url = "https://6181431832c9e2001780472a.mockapi.io/username";
-  // const api = "http://localhost:8080/products";
+  // const fakeUrl = "https://6181431832c9e2001780472a.mockapi.io/username";
+  const api = "http://localhost:8080/users";
 
   const getUser = (e) => {
     e.preventDefault();
-    axios.get(url, config).then((response) => {
+    axios.get(api).then((response) => {
       const user = response.data.find(
         (user) => username === user.name && password === user.password
       );

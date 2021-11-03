@@ -4,10 +4,13 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
 const UserForm = () => {
+  //Receber info do user
+  //Passar para o componente pai
+  //
+
   return (
     <div>
       <Form>
-
         <Form.Group className="Username" controlId="formUser">
           <Form.Label>Username</Form.Label>
           <Form.Control placeholder="your username" />
@@ -22,7 +25,7 @@ const UserForm = () => {
           <Form.Label>Age</Form.Label>
           <Form.Control placeholder="your Age" />
         </Form.Group>
-        
+
         <Button variant="primary" type="submit" className="submitButton">
           Submit
         </Button>

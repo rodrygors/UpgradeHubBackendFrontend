@@ -10,7 +10,6 @@ const InvoiceList = ({ invoices }) => {
               <h3>Number: #{invoice.number}</h3>
               <h3>products: {/*invoice.products*/}</h3>
               <h3>total: {invoice.total}</h3>
-              <h4>user: {invoice.username}</h4>
             </div>
           ))
         : "Fetching Invoices"}
