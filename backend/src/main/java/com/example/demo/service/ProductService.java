@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.exception.InvoiceNotFound;
 import com.example.demo.exception.ProductNotFound;
+import com.example.demo.exception.SortingMethodNotFound;
 import com.example.demo.model.Invoice;
 import com.example.demo.model.Product;
 import com.example.demo.repository.InvoiceRepository;
@@ -9,6 +10,7 @@ import com.example.demo.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 
@@ -47,5 +49,15 @@ public class ProductService {
           invoiceRepository.save(invoice);
       }
         productRepository.deleteById(id);
+    }
+
+    public List<Product> getSortedProducts(String sort) {
+        if(sort.toLowerCase(Locale.ROOT).equals("asc")){
+            return productRepository.findAllOrderByValueAsc();
+        }
+        else if(sort.toLowerCase(Locale.ROOT).equals("desc")){
+            return productRepository.findAllOrderByValueDesc();
+        }
+        else throw new SortingMethodNotFound();
     }
 }
