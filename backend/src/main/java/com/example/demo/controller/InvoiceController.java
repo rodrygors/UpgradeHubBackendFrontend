@@ -44,7 +44,7 @@ public class InvoiceController {
         return createInvoiceResponseList(invoiceService.getHighestBills());
     }
 
-    @PostMapping(value = "/invoices/")
+    @PostMapping(value = "/invoices")
     public InvoiceResponse createInvoice(@RequestBody CreateInvoiceRequest createInvoiceRequest) {
         return invoiceService.createInvoice(createInvoiceRequest.getUserId(), createInvoiceRequest.getProductIdList()).createInvoiceResponse();
     }
